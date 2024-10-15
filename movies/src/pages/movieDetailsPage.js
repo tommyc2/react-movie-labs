@@ -31,7 +31,6 @@ const MoviePage = (props) => {
             .then((res) => res.json())
             .then((json) => json.posters)
             .then((images) => {
-                // console.log(images)
                 setImages(images);
             });
         // eslint-disable-next-line
