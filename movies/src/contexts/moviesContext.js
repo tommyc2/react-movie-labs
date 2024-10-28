@@ -6,25 +6,38 @@ const MoviesContextProvider = (props) => {
 
     const [favorites, setFavorites] = useState( [] )
     const [myReviews, setMyReviews] = useState( {} ) // store reviews in context
+    const [myWatchList, setWatchList] = useState([])
+
+    const addToWatchList = (movie) => {
+        let newMustWatchList = [];
+        if (!myWatchList.includes(movie.id)){
+            newMustWatchList = [...myWatchList, movie.id];
+        }
+        else
+        {
+            newMustWatchList = [...myWatchList];
+        }
+        setWatchList(newMustWatchList)
+
+        console.log("Watch List Size: ", newMustWatchList) // debugging
+    }
 
     const addReview = (movie, review) => {
         setMyReviews( {...myReviews, [movie.id]: review } )
     };
-    // console log just for debugging purposes
-    console.log(myReviews);
 
     const addToFavorites = (movie) => {
         let newFavorites = [];
         if (!favorites.includes(movie.id)){
             newFavorites = [...favorites, movie.id];
         }
-        else{
+        else
+        {
             newFavorites = [...favorites];
         }
         setFavorites(newFavorites)
     };
 
-    // We will use this function in the next step
     const removeFromFavorites = (movie) => {
         setFavorites( favorites.filter(
             (mId) => mId !== movie.id
@@ -38,6 +51,7 @@ const MoviesContextProvider = (props) => {
                 addToFavorites,
                 removeFromFavorites,
                 addReview,
+                addToWatchList
             }}
         >
             {props.children}
