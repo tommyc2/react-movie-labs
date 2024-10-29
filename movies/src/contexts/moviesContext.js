@@ -18,8 +18,6 @@ const MoviesContextProvider = (props) => {
             newMustWatchList = [...myWatchList];
         }
         setWatchList(newMustWatchList)
-
-        console.log("Watch List Size: ", newMustWatchList) // debugging
     }
 
     const addReview = (movie, review) => {
